@@ -1,0 +1,6 @@
+services:
+  app:
+    image: ghcr.io/hueske-digital/imapsync:latest
+    restart: unless-stopped
+    env_file:
+      - .env
