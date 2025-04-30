@@ -14,12 +14,14 @@ echo "Ziel:        $USER2@$HOST2"
 echo "Parameter:   $EXTRA_PARAMS"
 echo "--------------------------------------------------"
 
+read -r -a EXTRA_ARR <<< "$EXTRA_PARAMS"
+
 while true; do
   echo "[$(date)] Starte Synchronisierung: $USER1@$HOST1 → $USER2@$HOST2"
   imapsync \
     --host1 "$HOST1" --user1 "$USER1" --password1 "$PASSWORD1" \
     --host2 "$HOST2" --user2 "$USER2" --password2 "$PASSWORD2" \
-    $EXTRA_PARAMS
+    "${EXTRA_ARR[@]}"
   echo "[$(date)] Synchronisierung abgeschlossen."
   sleep "$SYNC_INTERVAL"
 done
